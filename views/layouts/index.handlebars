@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>User Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  </head>
+  <body>
+    <h6>Copy this token for later</h6>
+    <p>{{tok}}</p>
+    <form action='https://cs493a1-309217.uc.r.appspot.com/users' method="POST">
+      <label for="comp">Tell us your company_id, if you have one to finish signing up: </label><br>
+      <input type="text" id="comp" name="comp" value="NONE"><br>
+      <input type="hidden" id="jaywtee" name="jaywtee" value={{tok}}>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
