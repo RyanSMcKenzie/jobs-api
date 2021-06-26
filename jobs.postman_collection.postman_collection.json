@@ -1,0 +1,1802 @@
+{
+	"info": {
+		"_postman_id": "755f892e-eb1b-4619-97fc-7eb9a11a7aa1",
+		"name": "mckenzry_project.postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"name\": \"goobi\",",
+							"    \"type\": \"fintech\",",
+							"    \"description\": \"money stuff\",",
+							"    \"website\": \"goobi.com\"",
+							"}*/",
+							"pm.environment.set(\"new_company\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"fintech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobi\",\n    \"type\": \"fintech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobi.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Created Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"fintech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"cheesetech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobi\",\n    \"type\": \"cheesetech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobi.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Company Taken Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"name\": \"goobi\",",
+							"    \"type\": \"fintech\",",
+							"    \"description\": \"money stuff\",",
+							"    \"website\": \"goobi.com\"",
+							"}*/",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(403);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobi\",\n    \"type\": \"fintech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobi.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Company 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"name\": \"goobi\",",
+							"    \"type\": \"fintech\",",
+							"    \"description\": \"money stuff\",",
+							"    \"website\": \"goobi.com\"",
+							"}*/",
+							"pm.environment.set(\"new_company2\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobil\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"fintech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobil.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobil\",\n    \"type\": \"fintech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobil.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company Put Taken Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status OK\", () => {",
+							"    pm.response.to.have.status(403);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobi\",\n    \"type\": \"cheesetech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobi.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Put Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"cheesetech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company Patch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"fintech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"Pretty much no idea\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Pretty much no idea\",\n    \"type\": \"fintech\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete New Company 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deleted (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Not Found\", () => {",
+							"    pm.response.to.have.status(404);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Created Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Job Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer II\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(100000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer II\",\n\t\"company\": {{new_company}},\n\t\"salary\": 100000,\n\t\"experience\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Missing Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer II\",\n\t\"company\": {{new_company}},\n\t\"experience\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Company 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer II\",\n\t\"company\": \"Oobur\",\n    \"salary\": 90000,\n\t\"experience\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer II\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(95000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salary\": 95000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Test 406 - Content Header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salary\": 95000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Invalid - 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salary\": 95000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs/1",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job1\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job2\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job3\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job4\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job5\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job6\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Jobs - Pagination",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Correct Length\", () => {",
+							"    pm.expect(pm.response.json()[\"jobs\"].length).to.eq(5);",
+							"    pm.expect(pm.response.json()[\"next\"]).to.exist;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Jobs - End Pagination",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Correct Length\", () => {",
+							"    pm.expect(pm.response.json()[\"jobs\"].length).to.eq(1);",
+							"    pm.expect(pm.response.json()[\"next\"]).to.not.exist;",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs?offset=5",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job3}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job4}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job5}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job5}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job Copy 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job6}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job6}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete New Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"name\": \"goobi\",",
+							"    \"type\": \"fintech\",",
+							"    \"description\": \"money stuff\",",
+							"    \"website\": \"goobi.com\"",
+							"}*/",
+							"pm.environment.set(\"new_company\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['name']).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['type']).to.eq(\"fintech\");",
+							"    pm.expect(pm.response.json()['description']).to.eq(\"money stuff\");",
+							"    pm.expect(pm.response.json()['website']).to.eq(\"goobi.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"goobi\",\n    \"type\": \"fintech\",\n    \"description\": \"money stuff\",\n    \"website\": \"goobi.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/companies",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job6\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Job Copy 8",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*{",
+							"    \"title\": \"Software Engineer\",",
+							"\t\"company\": {{new_company}},",
+							"\t\"salary\": 80000,",
+							"\t\"experience\": 1",
+							"}*/",
+							"pm.environment.set(\"new_job6\", pm.response.json()['id']);",
+							"",
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test(\"Valid content\", () => {",
+							"    pm.expect(pm.response.json()['title']).to.eq(\"Software Engineer\");",
+							"    pm.expect(pm.response.json()[\"company\"][\"name\"]).to.eq(\"goobi\");",
+							"    pm.expect(pm.response.json()['experience']).to.eq(1);",
+							"    pm.expect(pm.response.json()['salary']).to.eq(80000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Software Engineer\",\n\t\"company\": {{new_company}},\n\t\"salary\": 80000,\n\t\"experience\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete New Job - Fail 403 Diff User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(403);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs/{{new_job6}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs",
+						"{{new_job6}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete New Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"deleted\", () => {",
+							"    pm.response.to.have.status(204);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies/{{new_company}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies",
+						"{{new_company}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Jobs - Test Deleted From Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Correct Length\", () => {",
+							"    pm.expect(pm.response.json()[\"jobs\"].length).to.eq(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/jobs",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Created\", () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/users",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Company - 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Correct Status\", () =>{",
+							"    pm.response.to.have.status(401);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/companies",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt1}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
